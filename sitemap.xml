@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ahsan-adib.github.io/ahmed-adib/index.html</loc>
-    <lastmod>2025-07-18T16:31:52.357Z</lastmod>
+    <loc>https://ahsan-adib.github.io/ahmed-adib/projects.html</loc>
+    <lastmod>2025-07-18T16:43:39.325Z</lastmod>
   </url>
   <url>
-    <loc>https://ahsan-adib.github.io/ahmed-adib/about.html</loc>
-    <lastmod>2025-07-18T16:31:52.338Z</lastmod>
+    <loc>https://ahsan-adib.github.io/ahmed-adib/index.html</loc>
+    <lastmod>2025-07-18T16:43:39.325Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ahsan-adib.github.io/ahmed-adib/projects/project_title.html</loc>
+    <lastmod>2025-07-18T16:43:39.326Z</lastmod>
   </url>
 </urlset>
