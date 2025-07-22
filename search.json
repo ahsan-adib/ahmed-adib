@@ -4,13 +4,34 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "Title\n\n\n\nAuthor\n\n\n\n\n\n\n\n\nAbout\n\n\n \n\n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\n07-22-2025\n\n\nHimalayan expedition data\n\n\nAhmed A. Adib\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ahmed A. Adib",
+    "section": "",
+    "text": "Hello, please hesitate to contact me."
+  },
+  {
+    "objectID": "index.html#bio",
+    "href": "index.html#bio",
+    "title": "Ahmed A. Adib",
+    "section": "",
+    "text": "Hello, please hesitate to contact me."
   },
   {
     "objectID": "projects/project_title.html",
     "href": "projects/project_title.html",
-    "title": "About",
+    "title": "Himalayan expedition data",
     "section": "",
-    "text": "About this site"
+    "text": "library(tidyverse)"
+  },
+  {
+    "objectID": "projects/project_title.html#packages-used",
+    "href": "projects/project_title.html#packages-used",
+    "title": "Himalayan expedition data",
+    "section": "",
+    "text": "library(tidyverse)"
   }
 ]
