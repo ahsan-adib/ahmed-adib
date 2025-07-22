@@ -1,28 +1,27 @@
 ---
-title: "ahmed-a-adib"
+title: "Ahmed A. Adib"
 image: headshot2.jpeg
 toc: false
 about:
   template: trestles
   links:
-    - text: GitHub
-      href: link
-    - text: Email
-      href: link
+    - icon: github
+      text: GitHub
+      url: https://github.com/ahsan-adib
     - icon: linkedin
       text: LinkedIn
-      href: link
+      url: https://www.linkedin.com/in/ahsanadib18/
     - icon: envelope
       text: Email
-      href: link
+      url: mailto:ahmed-adib@ouhsc.edu
 ---
 
-::: {.column-page}
-
+::: column-page
 ## Bio
+
+Hello, please hesitate to contact me.
 
 ## Research Goals
 
 ## Experience
-
 :::

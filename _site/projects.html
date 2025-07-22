@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-51ec7ca51181f3ddbd64252f216dcdbf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-da6f4e70836032245a5e25d2120eb3ad.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,9 +79,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: ["listing-title","listing-author"],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -205,6 +205,10 @@ window.Quarto = {
 <tr>
 
 <th>
+Date
+</th>
+
+<th>
 Title
 </th>
 
@@ -216,12 +220,15 @@ Author
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-listing-file-modified-sort="1752853516786" data-listing-reading-time-sort="1" data-listing-word-count-sort="3" data-listing-title-sort="About" data-listing-filename-sort="project_title.qmd">
+<tr data-index="0" data-listing-date-sort="1753160400000" data-listing-file-modified-sort="1753203496644" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="5" data-listing-title-sort="Himalayan expedition data" data-listing-filename-sort="project_title.qmd">
 <td>
-<a href="./projects/project_title.html" class="title listing-title">About</a>
+<span class="listing-date">07-22-2025</span>
 </td>
 <td>
-<span class="listing-author">&nbsp;</span>
+<a href="./projects/project_title.html" class="title listing-title">Himalayan expedition data</a>
+</td>
+<td>
+<span class="listing-author">Ahmed A. Adib</span>
 </td>
 
 </tr>

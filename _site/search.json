@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "ahmed-a-adib",
+    "title": "Ahmed A. Adib",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "Hello, please hesitate to contact me."
   },
   {
     "objectID": "about.html",
@@ -18,13 +18,27 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "Title\n\n\n\nAuthor\n\n\n\n\n\n\n\n\nAbout\n\n\n \n\n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\n\nTitle\n\n\n\nAuthor\n\n\n\n\n\n\n\n\n07-22-2025\n\n\nHimalayan expedition data\n\n\nAhmed A. Adib\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/project_title.html",
     "href": "projects/project_title.html",
-    "title": "About",
+    "title": "Himalayan expedition data",
     "section": "",
-    "text": "About this site"
+    "text": "library(tidyverse)"
+  },
+  {
+    "objectID": "index.html#bio",
+    "href": "index.html#bio",
+    "title": "Ahmed A. Adib",
+    "section": "",
+    "text": "Hello, please hesitate to contact me."
+  },
+  {
+    "objectID": "projects/project_title.html#packages-used",
+    "href": "projects/project_title.html#packages-used",
+    "title": "Himalayan expedition data",
+    "section": "",
+    "text": "library(tidyverse)"
   }
 ]

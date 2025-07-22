@@ -1,0 +1,15 @@
+{
+  "hash": "ed58c0c6d762878b7cd9f37a9b35cd54",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Himalayan expedition data\"\nauthor: Ahmed A. Adib\ndate: 2025-07-22\ndraft: false\neditor-options:\n  chunk_output_type: inline\n---\n\n## Packages used\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n```\n:::\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
