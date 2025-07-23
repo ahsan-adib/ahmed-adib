@@ -1,0 +1,65 @@
+#for all the details of 8k peaks
+peak.8k = peak.data |> filter(HEIGHTM >= 8000)
+
+#for only the names of the 8k peaks
+peak_8k_names = peak.data |> filter(HEIGHTM >= 8000) |> pull(PEAKID)
+
+#extract the expedition details of the 8k peaks
+exped_8k = exped.data |> filter(PEAKID %in% peak_8k_names)
+
+### 2. Which expeditions had first ascent on any route?
+
+exped.data |>
+  filter(ASCENT1 == "1st" | ASCENT2 == "1st" | ASCENT3 == "1st" | ASCENT4 == "1st")
+
+### 9. Do longer expeditions tend to result in higher success rates or increased fatalities?
+
+a1 = exped.data |>
+  mutate(success = SUCCESS1 | SUCCESS2 | SUCCESS3 | SUCCESS4) |>
+  filter(!is.na(TOTDAYS), !is.na(success)) |>
+  ggplot(aes(x = success, y = TOTDAYS, fill = success)) +
+  geom_boxplot() +
+  labs(
+    title = "Expedition Duration and Success",
+    x = "Success",
+    y = "Total Days"
+  ) +
+  theme_minimal()
+
+
+a2 = exped.data |>
+  mutate(death = MDEATHS + HDEATHS) |>
+  filter(!is.na(TOTDAYS), !is.na(death)) |>
+  ggplot(aes(x = death, y = TOTDAYS, fill = death)) +
+  geom_boxplot() +
+  labs(
+    title = "Expedition Duration and Fatality",
+    x = "Death",
+    y = "Total Days"
+  ) +
+  theme_minimal()
+
+
+exped_tidy %>%
+  mutate(deaths = MDEATHS + HDEATHS) %>%
+  ggplot(aes(x = TOTDAYS, y = deaths)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  labs(
+    title = "Relationship Between Expedition Duration and Deaths",
+    x = "Total Expedition Days",
+    y = "Total Deaths (Members + Hired)"
+  ) +
+  theme_minimal()
+
+
+exped_tidy %>%
+  mutate(success = SUCCESS1 | SUCCESS2 | SUCCESS3 | SUCCESS4) %>%
+  ggplot(aes(x = as.factor(success), y = TOTDAYS, fill = success)) +
+  geom_boxplot() +
+  labs(
+    title = "Expedition Duration by Success",
+    x = "Expedition Successful?",
+    y = "Total Expedition Days"
+  ) +
+  theme_minimal()
