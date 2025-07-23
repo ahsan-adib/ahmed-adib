@@ -3,7 +3,7 @@
     "path": "~/GitHub/ahmed-adib/projects/project_title.qmd",
     "project_path": "projects/project_title.qmd",
     "type": "quarto_markdown",
-    "hash": "4108923794",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1753302312843.0,
@@ -17,7 +17,7 @@
         "rmdVisualMode": "true",
         "rmdVisualWrapConfigured": "true",
         "docOutlineVisible": "1",
-        "rmdVisualModeLocation": "2:1200",
+        "rmdVisualModeLocation": "140:0",
         "rmdVisualCollapsedChunks": ""
     },
     "folds": "",
