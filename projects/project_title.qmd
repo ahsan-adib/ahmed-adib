@@ -65,7 +65,7 @@ exped.8k = exped.data |> filter(PEAKID %in% peak_8k_names)
 
 ### 1. What is the most successful route for the expedition for 8000m peaks?
 
-There are 4 different routes enlisted for each peaks, assigned by `ASCENT1`, `ASCENT2`, `ASCENT3` and `ASCENT4`. The successful climbing using these routes are stored in corresponding logical vector `SUCCESS1`, `SUCCESS2`, `SUCCESS3`, `SUCCESS4`. We will use these SUCCESS data along with the `exped.8k` dataset.
+There are 4 different routes enlisted for each peaks, assigned by `ROUTE1`, `ROUTE2`, `ROUTE3` and `ROUTE4`. The successful climbing using these routes are stored in corresponding logical vector `SUCCESS1`, `SUCCESS2`, `SUCCESS3`, `SUCCESS4`. We will use these SUCCESS data along with the `exped.8k` dataset.
 
 ```{r}
 exped.8k |> pivot_longer(cols = c(SUCCESS1, SUCCESS2, SUCCESS3, SUCCESS4),
@@ -249,7 +249,7 @@ exped.data |> mutate(success = SUCCESS1 | SUCCESS2 | SUCCESS3 | SUCCESS4,
   group_by(O2USED) |>
   summarise(success.rate = (mean(success, na.rm = TRUE)),
             death.rate = mean(death > 0, na.rm = TRUE)) |>
-  pivot_longer(cols = c(success.rate, death.rate), names_to = "names", values_to = "rate") %>%
+  pivot_longer(cols = c(success.rate, death.rate), names_to = "names", values_to = "rate") |>
   ggplot(aes(x = O2USED, y = rate, fill = names)) +
   geom_col(position = "dodge") +
   scale_y_continuous(labels = scales::percent) +
@@ -272,7 +272,7 @@ exped.data |>
     summit.rate = successes / attempts) |>
   left_join(select(peak.data, PEAKID, PKNAME), by = "PEAKID") |>
   filter(!is.na(PKNAME), attempts >= 5) |>
-  arrange(desc(attempts)) |>
+  arrange(attempts) |>
   slice_head(n = 10) |>
   arrange(summit.rate) |>
   #slice_head(n = 10) |>
