@@ -1,0 +1,18 @@
+"0","exped.data |> mutate(success = SUCCESS1 | SUCCESS2 | SUCCESS3 | SUCCESS4) |>
+  group_by(O2USED) |>
+  summarise(success.rate = (mean(success, na.rm = TRUE))) |>
+  ggplot(aes(x = O2USED, y = success.rate, fill = O2USED)) +
+  geom_col(width = 0.3) +
+  geom_text(aes(label = scales::percent(success.rate, accuracy = 0.1), vjust = -0.5,  size = 4)
+) +
+  theme(legend.position = ""none"") +
+  labs(
+    title = ""Success rate with supplemental oxygen"",
+    x = ""Oxygen used"",
+    y = ""Success rate"")
+"
+"2","G1;H1;Errorh in ggplot(summarise(group_by(mutate(exped.data, success = SUCCESS1 |  : 
+  could not find function ""ggplot""
+Error during wrapup: not that many frames on the stack
+Error: no more error handlers available (recursive errors?); invoking 'abort' restart
+g"
