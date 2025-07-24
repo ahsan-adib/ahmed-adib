@@ -1,0 +1,293 @@
+---
+title: "Data Visualization with ggplot2"
+author: "Lindsay N. Hayes"
+date: 2025-07-10
+draft: false
+editor_options: 
+  chunk_output_type: console
+---
+
+## About the activity
+
+1)  Access the Quarto document [here](https://github.com/lindsaynhayes/introR2025/blob/main/activities/classwork04/classwork_L04.qmd).
+
+2)  Download the raw file.
+
+3)  Open it in RStudio.
+
+We will work our way through this quarto document together during class. The activity will cover plotting data with ggplot2!
+
+## Load the Packages
+
+The `tidyverse` library includes `ggplot2` and I added `cowplot` to make the plots prettier. We will use data from the `palmerpenguins` and the `taylor` packages.
+
+```{r}
+#| label: packages
+#| message: false
+
+library(tidyverse)
+library(cowplot)
+library(palmerpenguins)
+library(taylor)
+```
+
+## Histogram & Density plots
+
+Use the `palmerpenguins` data to plot some histograms. Histograms are good for evaluating the distribution of continuous data.
+
+#### 1. How would you describe the distributions in the penguins dataset? Are they uni-modal or bi-modal or other?
+
+```{r}
+
+penguins |> head()
+
+# plot the distribution of the penguins' body mass using geom_histogram()
+
+ggplot(penguins, aes(x = body_mass)) + geom_histogram()
+
+# lets make the plot and the code a little more pretty (note tidy syntax is to put each element on a new line, the "+" wraps the text)
+
+ggplot(penguins, aes(x = body_mass)) + 
+  geom_histogram(fill = "deeppink") + 
+  theme_cowplot()
+
+# histograms are impacted by the "bin" or how each bar is averaging (how thick the bars are). We can change that will `bin` or `binwidth`
+
+ggplot(penguins, aes(x = body_mass)) + 
+  geom_histogram(binwidth = 500, fill = "deeppink") + 
+  theme_cowplot()
+
+# add some more labels
+
+ggplot(penguins, aes(x = body_mass)) + 
+  geom_histogram(binwidth = 25, fill = "deeppink") + 
+  theme_cowplot() +
+  labs(title = "Distribution of Penguin Body Mass",
+         x = "Body Mass (g)",
+         y ="Count")
+
+# color by species to gain insight into the distribution
+
+ggplot(penguins, aes(x = body_mass, fill = species)) + 
+  geom_histogram(binwidth = 100) + 
+  theme_cowplot() + facet_wrap(~species) +
+  labs(title = "Distribution of Penguin Body Mass",
+         x = "Body Mass (g)",
+         y ="Count")
+
+```
+
+#### 2. Plot the other penguin bill and flipper measurements? What are their distribution? How does the binwidth change the interpretation of the distributions? Are they bi-modal or uni-modal?
+
+```{r}
+
+penguins |> head()
+
+penguins |> ggplot(aes(x=bill_len)) + geom_histogram()
+
+penguins |> ggplot(aes(x=bill_len)) + geom_histogram(fill = "slateblue")
+
+penguins |> ggplot(aes(x=bill_len)) + geom_histogram(binwidth = 2, fill = "slateblue")
+
+penguins |> ggplot(aes(x=bill_len)) + geom_histogram(binwidth = 2, fill = "slateblue") +
+  theme_cowplot() +
+  labs(title = "penguins_bill_length",
+       x = "length_of_bill",
+       y = "Count")
+
+
+penguins |> ggplot(aes(x=bill_len)) + geom_histogram(binwidth = 2, fill = "slateblue") +
+  theme_cowplot() +
+  labs(title = "penguins_bill_length",
+       x = "length_of_bill",
+       y = "Count") +
+  facet_wrap(~sex)
+
+
+
+###use geom density
+
+
+pe
+```
+
+#### 3. A benefit of geom_density() is that the plots are not dependent on the binsize. Compare the histograms and the density plots for each data feature.
+
+```{r}
+
+# Hint. Change geom_histogram to geom_density
+
+penguins |> ggplot(aes(x=bill_len)) + geom_density(fill = "blue") +
+  theme_cowplot() +
+  labs(title = "penguins_bill_length",
+       x = "length_of_bill",
+       y = "Count")
+
+```
+
+#### 4. Where do you think the bimodal distributions may come from? Lets check the distribution across different species. Add `fill = species` to the `aes()` so we can see how the distributions change across species of penguins.
+
+```{r}
+#| fig-width: 10
+#| fig-height: 6
+#| warning: false
+ 
+
+# Hint: add an `alpha` to the geom_density to sets the opacity of the density plots. 
+
+a = penguins |>
+  ggplot(aes(x=body_mass, fill = species)) +
+  geom_density(alpha = 0.5) +
+  theme_cowplot() +
+  labs(subtitle = "Distribution of penguins bill length",
+       x = "length_of_bill",
+       y = "Count")
+
+b = penguins |>
+  ggplot(aes(x=bill_len, fill = species)) +
+  geom_density(alpha = 0.5) +
+  theme_cowplot() +
+  labs(subtitle = "Distribution of penguins bill length",
+       x = "length_of_bill",
+       y = "Count")
+
+c = penguins |>
+  ggplot(aes(x=bill_dep, fill = species)) +
+  geom_density(alpha = 0.5) +
+  theme_cowplot() +
+  labs(subtitle = "Distribution of penguins bill length",
+       x = "length_of_bill",
+       y = "Count")
+
+
+plot_grid(a, b, c,
+          labels = c("A", "B", "C"))
+```
+
+## Barplots of Categorical data
+
+Another type of distribution and count data is of categorical data. Count data for categorical data is best displayed in barplots
+
+```{r}
+#| fig-width: 8
+#| fig-height: 6
+
+# some tidying
+taylor$key <- str_sub(taylor$key_name, 1, 1)
+taylor$album_name <- fct_inorder(taylor$album_name)
+
+# Lets look at the distribution of musical keys usage across TS albums.
+
+taylor |>
+  ggplot(aes(y = album_name, fill = key)) +
+  geom_bar(position = "fill") +
+  theme_cowplot() +
+  labs(title = "Keys of TS Album",
+       y = "Album name",
+       x = "")
+
+# Now lest look at the proportions
+
+
+
+```
+
+#### 5. What factors distinguish Ideal cut versus Good cut diamonds?
+
+Using the `diamonds` dataset, determine the distribution of the `cut`, `color`, and `clarity` of diamonds.
+
+```{r}
+#| fig-width: 10
+#| fig-height: 7
+
+# Hint: first look at the distribution of each characteristic
+
+a1 = diamonds |>
+  ggplot(aes(y = cut, fill = color)) +
+  geom_bar(position = "fill") +
+  theme_cowplot()
+
+a2 = diamonds |>
+  ggplot(aes(y = clarity, fill = color)) +
+  geom_bar(position = "fill") +
+  theme_cowplot()
+
+a3 = diamonds |>
+  ggplot(aes(y = cut, fill = color)) +
+  geom_bar(position = "fill") +
+  theme_cowplot()
+
+# Hint: Now plot two of the variables using geom_bar() and the other as a fill color
+
+
+```
+
+## Boxplots!
+
+The best way to view group differences.
+
+#### 6. Does the bill length and depth, the flipper length, or the body mass differ across species of penguins?
+
+Using the `penguins` dataset use geom_boxplot() to find out if there is a difference in the penguin features between different species of penguins
+
+```{r}
+
+# Hint: plot the species as a categorical feature and the bill and the bill adn flipper as the continuous variable. 
+
+penguins |>
+  ggplot(aes(x=species, y=bill_len, fill = species)) +
+  geom_boxplot()+ #(alpha = 0.5) +
+  geom_point(position = position_jitter(0.5)) +
+  #theme_cowplot() +
+  ylim(30,60) +
+  theme_classic()+
+  labs(subtitle = "Distribution of penguins bill length",
+       x = "length_of_bill",
+       y = "Count")
+
+```
+
+*Isn't this better than bar graphs??!!!*
+
+**Note: `geom_violin()` can also be a good alternative to a boxplot if you have a very large sample size, such as in single cell RNA sequencing or flow cytometry data. Try the plots as a `geom_violin()` instead of `geom_boxplot()`.**
+
+## Scatter and Line Plots
+
+Looking at 2 continuous variables and their relationship to one another.
+
+#### 7. Using the `iris` dataset use to find out the relationship between `Sepal.Length`, `Sepal.Width`, `Petal.Length`, and Petal.Width`and how that relationship changes across different`Species\` of iris flowers.
+
+```{r}
+
+iris |> head()
+
+
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species, group = Species)) + 
+  geom_point() + 
+  geom_smooth(method = lm) +
+  theme_cowplot() +
+  labs( x = "Sepal Length (mm)", y= "Sepal Width (mm)")
+
+
+
+ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Species, group = Species)) + 
+  geom_point() + 
+  geom_smooth(method = lm) +
+  theme_cowplot() +
+  labs( x = "Petal Length (mm)", y= "Petal Width (mm)")
+
+
+```
+
+#### 8. Now use the `ChickWeight` data to determine which `Diet` lead to the greatest `weight` gain over `Time.` Remember to take into account repeated measures across `Chick`
+
+```{r}
+
+
+
+
+```
+
+```{r}
+sessionInfo()
+```

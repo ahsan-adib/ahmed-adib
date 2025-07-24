@@ -20,6 +20,8 @@ library(tidytuesdayR)
 ## Get the data
 
 ```{r}
+#| label: get-data
+#| output: false
 himalayan.data = tidytuesdayR::tt_load(2025, week = 3)
 ```
 
@@ -37,22 +39,33 @@ head(exped.data)
 colnames(exped.data)
 ```
 
-##Questions
+## Disclaimer
 
-### 1. What is the most successful route for the expedition for 8k peaks?
-
-##### Extract the names of the 8k peaks
+Since 8000 meter peaks are the most prestigious ones in terms of mountaineering, we will create a separate data file containing only the 8k peaks. First, get the names of the peaks from the `peak.data` file.
 
 ```{r}
 peak_8k_names = peak.data |> filter(HEIGHTM >= 8000) |> pull(PEAKID)
 ```
 
-##### Extract the expedition details of these 8k peaks
+Just to know the names of the peaks, we can extract the `PKNAME` instead of `PEAKID`
+
+```{r}
+peak.data |> filter(HEIGHTM >= 8000) |> pull(PKNAME)
+```
+
+We can see there are 16 different names. If you are into mountaineering, you can see some famous names are missing, like `K2`, second highest peak in the world. These peaks are missing due to its presence in a different mountain range (Karakoram), instead of Himalayan range.
+
+Now we extract the expedition details of these 8k peaks.
 
 ```{r}
 exped.8k = exped.data |> filter(PEAKID %in% peak_8k_names)
 ```
 
+## Questions
+
+### 1. What is the most successful route for the expedition for 8k peaks?
+
+There are 4 different routes enlisted for each peaks, assigned by `ASCENT1`, `ASCENT2`, `ASCENT3` and `ASCENT4`. The succesful climbing in these routes are stored in corresponding logical vector `SUCCESS1`, `SUCCESS2`, `SUCCESS3`, `SUCCESS4`. We will use these SUCCESS data along with the `exped.8k` dataset.
 ```{r}
 exped.8k |> pivot_longer(cols = c(SUCCESS1, SUCCESS2, SUCCESS3, SUCCESS4),
                            names_to = "route_success",
@@ -68,9 +81,14 @@ exped.8k |> pivot_longer(cols = c(SUCCESS1, SUCCESS2, SUCCESS3, SUCCESS4),
   )
 ```
 
-### 3. Which countries has lead the most successful expedition?
+### 2. Which countries has lead the most successful expedition?
+
+Again, we will use the `SUCCESS` vector; now with the `NATION` vector; with the `exped.data` for the details of the all peaks.
 
 ```{r}
+#| fig-width: 10
+#| fig-height: 12
+#| warning: false
 exped.data |> filter(SUCCESS1 == TRUE | SUCCESS2 == TRUE | SUCCESS3 == TRUE | SUCCESS4 == TRUE) |>
   count(NATION, sort = TRUE) |>
   ggplot(aes(x = reorder(NATION, n), y = n)) +
@@ -84,9 +102,12 @@ exped.data |> filter(SUCCESS1 == TRUE | SUCCESS2 == TRUE | SUCCESS3 == TRUE | SU
   coord_flip()
 ```
 
-##### what about the 8k peaks
+#### What about the 8k peaks
 
 ```{r}
+#| fig-width: 10
+#| fig-height: 12
+#| warning: false
 exped.8k |> filter(SUCCESS1 == TRUE | SUCCESS2 == TRUE | SUCCESS3 == TRUE | SUCCESS4 == TRUE) |>
   count(NATION, sort = TRUE) |>
   ggplot(aes(x = reorder(NATION, n), y = n)) +
@@ -100,9 +121,12 @@ exped.8k |> filter(SUCCESS1 == TRUE | SUCCESS2 == TRUE | SUCCESS3 == TRUE | SUCC
   coord_flip()
 ```
 
-##### what about the one we actually care about (Everest)?
+#### What about the one we actually care about (`Everest`)
 
 ```{r}
+#| fig-width: 10
+#| fig-height: 10
+#| warning: false
 exped.8k |> filter(SUCCESS1 == TRUE | SUCCESS2 == TRUE | SUCCESS3 == TRUE | SUCCESS4 == TRUE) |>
   filter(PEAKID == "EVER") |>
   count(NATION, sort = TRUE) |>
@@ -117,7 +141,7 @@ exped.8k |> filter(SUCCESS1 == TRUE | SUCCESS2 == TRUE | SUCCESS3 == TRUE | SUCC
   coord_flip()
 ```
 
-### 4. How does the travel time vary in different seasons?
+### 3. How does the travel time vary in different seasons?
 
 ```{r}
 exped.data |> filter(!is.na(TOTDAYS), !is.na(SEASON_FACTOR)) |>
@@ -133,9 +157,12 @@ exped.data |> filter(!is.na(TOTDAYS), !is.na(SEASON_FACTOR)) |>
   theme(legend.position = "none")
 ```
 
-### 5. Most common reasons for expedition termination
+### 4. Most common reasons for expedition termination
 
 ```{r}
+#| fig-width: 14
+#| fig-height: 6
+#| warning: false
 exped.data |> count(TERMREASON_FACTOR, sort=TRUE) |>
   ggplot(aes(x = reorder(TERMREASON_FACTOR,n), y = n, fill = n)) +
   geom_col() + geom_text(aes(label = n, hjust = -0.5)) +
@@ -147,7 +174,7 @@ exped.data |> count(TERMREASON_FACTOR, sort=TRUE) |>
   )
 ```
 
-### 6. Which peak has the highest fatality rate?
+### 5. Which peak has the highest fatality rate?
 
 ```{r}
 exped.data |> left_join(select(peak.data, PEAKID, PKNAME), by = "PEAKID") |>
@@ -169,7 +196,7 @@ exped.data |> left_join(select(peak.data, PEAKID, PKNAME), by = "PEAKID") |>
   theme_minimal()
 ```
 
-##### among the 8k peaks
+#### Among the 8k peaks
 
 ```{r}
 exped.8k |> left_join(select(peak.data, PEAKID, PKNAME), by = "PEAKID") |>
@@ -191,7 +218,7 @@ exped.8k |> left_join(select(peak.data, PEAKID, PKNAME), by = "PEAKID") |>
   theme_minimal()
 ```
 
-##### in case of number of fatalities in the peaks
+#### In case of number of fatalities on the peaks
 
 ```{r}
 exped.data |> left_join(select(peak.data, PEAKID, PKNAME), by = "PEAKID") |>
@@ -211,7 +238,7 @@ exped.data |> left_join(select(peak.data, PEAKID, PKNAME), by = "PEAKID") |>
   theme_minimal()
 ```
 
-### 7. Does the use of supplemental oxygen affect the success rate?
+### 6. Does the use of supplemental oxygen affect the success rate?
 
 ```{r}
 exped.data |> mutate(success = SUCCESS1 | SUCCESS2 | SUCCESS3 | SUCCESS4) |>
@@ -228,7 +255,7 @@ exped.data |> mutate(success = SUCCESS1 | SUCCESS2 | SUCCESS3 | SUCCESS4) |>
     y = "Success rate")
 ```
 
-### 8. Are commercial or standard routes more frequently involved in accidents?
+### 7. Are commercial or standard routes more frequently involved in accidents?
 
 ```{r}
 exped.data |>

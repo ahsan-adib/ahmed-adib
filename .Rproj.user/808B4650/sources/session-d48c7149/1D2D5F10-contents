@@ -1,0 +1,74 @@
+library(taylor)
+
+taylor = taylor_album_songs
+
+# what is the "class" of the object taylor?
+class(taylor)
+
+# what is the "class" of the object taylor_album_songs?
+class(taylor)
+
+# what types of data are in the object taylor_album_songs?
+glimpse(taylor)
+
+# change the "key_mode" from class "character" to class "factor"
+taylor$key_mode = as.factor(taylor$key_mode)
+class(taylor$key_mode)    #to check
+
+# How many albums are in the data set & how many songs on each album?
+taylor |> count(album_name)
+
+# How many albums are in the data set
+count(taylor$album_name)    #does not work for a character column
+unique(taylor$album_name) |> tibble()    #piping with tibble or table is not necessary
+
+#how many songs on each album?
+taylor |> group_by("album_name") |> summarise(n())
+
+#-----------------------------------------------------------------#
+A = c("a","b","c","d","e")
+B = c("b","a","e","c","d")
+
+identical(A, B)
+
+order(A)
+
+order(B)
+
+sort(A)
+
+sort(B)
+
+all.equal(sort(A), sort(B))
+
+#-----------------------------------------------------------------#
+
+
+
+# look at the columns in taylor_album_songs and pick what features of the data you want to explore (hint choose all the numeric variables)
+
+# create a matrix of those features
+
+mat = taylor[, c(4,12,13,14,15,16,17,18,19,20,21,22,23,24)]
+mat = taylor[, c(4,12:24)]
+
+# pipe the matrix into GGally::ggpairs(), evaluate the correlation matrix
+GGally::ggpairs(mat)
+mat |> GGally::ggpairs
+# Which values show a positive correlation? Which values show a negative correlation?
+
+var1 <- "dancability"
+var2 <- "energy"
+var3 <- "acousticness"
+var4 <- "energy"
+
+
+# Plot the correlations
+
+ggplot(taylor, aes(x=loudness, y=energy)) + geom_point(size=3)
+
+ggplot(taylor, aes(x=acousticness, y=energy)) + geom_point(size=3)
+
+
+
+
