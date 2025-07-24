@@ -154,13 +154,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#disclaimer" id="toc-disclaimer" class="nav-link" data-scroll-target="#disclaimer">Disclaimer</a></li>
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
   <ul class="collapse">
-  <li><a href="#what-is-the-most-successful-route-for-the-expedition-for-8k-peaks" id="toc-what-is-the-most-successful-route-for-the-expedition-for-8k-peaks" class="nav-link" data-scroll-target="#what-is-the-most-successful-route-for-the-expedition-for-8k-peaks">1. What is the most successful route for the expedition for 8k peaks?</a></li>
+  <li><a href="#what-is-the-most-successful-route-for-the-expedition-for-8000m-peaks" id="toc-what-is-the-most-successful-route-for-the-expedition-for-8000m-peaks" class="nav-link" data-scroll-target="#what-is-the-most-successful-route-for-the-expedition-for-8000m-peaks">1. What is the most successful route for the expedition for 8000m peaks?</a></li>
   <li><a href="#which-countries-has-lead-the-most-successful-expedition" id="toc-which-countries-has-lead-the-most-successful-expedition" class="nav-link" data-scroll-target="#which-countries-has-lead-the-most-successful-expedition">2. Which countries has lead the most successful expedition?</a></li>
   <li><a href="#how-does-the-travel-time-vary-in-different-seasons" id="toc-how-does-the-travel-time-vary-in-different-seasons" class="nav-link" data-scroll-target="#how-does-the-travel-time-vary-in-different-seasons">3. How does the travel time vary in different seasons?</a></li>
   <li><a href="#most-common-reasons-for-expedition-termination" id="toc-most-common-reasons-for-expedition-termination" class="nav-link" data-scroll-target="#most-common-reasons-for-expedition-termination">4. Most common reasons for expedition termination</a></li>
   <li><a href="#which-peak-has-the-highest-fatality-rate" id="toc-which-peak-has-the-highest-fatality-rate" class="nav-link" data-scroll-target="#which-peak-has-the-highest-fatality-rate">5. Which peak has the highest fatality rate?</a></li>
-  <li><a href="#does-the-use-of-supplemental-oxygen-affect-the-success-rate" id="toc-does-the-use-of-supplemental-oxygen-affect-the-success-rate" class="nav-link" data-scroll-target="#does-the-use-of-supplemental-oxygen-affect-the-success-rate">6. Does the use of supplemental oxygen affect the success rate?</a></li>
-  <li><a href="#are-commercial-or-standard-routes-more-frequently-involved-in-accidents" id="toc-are-commercial-or-standard-routes-more-frequently-involved-in-accidents" class="nav-link" data-scroll-target="#are-commercial-or-standard-routes-more-frequently-involved-in-accidents">7. Are commercial or standard routes more frequently involved in accidents?</a></li>
+  <li><a href="#does-the-use-of-supplemental-oxygen-affect-the-success-rate-and-death-rate" id="toc-does-the-use-of-supplemental-oxygen-affect-the-success-rate-and-death-rate" class="nav-link" data-scroll-target="#does-the-use-of-supplemental-oxygen-affect-the-success-rate-and-death-rate">6. Does the use of supplemental oxygen affect the success rate? and death rate?</a></li>
+  <li><a href="#which-peaks-have-the-most-attempts-but-lowest-summit-rate-hardest-peaks-to-summit" id="toc-which-peaks-have-the-most-attempts-but-lowest-summit-rate-hardest-peaks-to-summit" class="nav-link" data-scroll-target="#which-peaks-have-the-most-attempts-but-lowest-summit-rate-hardest-peaks-to-summit">7. Which peaks have the most attempts but lowest summit rate? (Hardest peaks to summit)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -267,7 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="disclaimer" class="level2">
 <h2 class="anchored" data-anchor-id="disclaimer">Disclaimer</h2>
-<p>Since 8000 meter peaks are the most prestigious ones in terms of mountaineering, we will create a separate data file containing only the 8k peaks. First, get the names of the peaks from the <code>peak.data</code> file.</p>
+<p>Since 8000 meter peaks are the most prestigious ones in terms of mountaineering, we will create a separate data file containing only the 8000m peaks. First, get the names of the peaks from the <code>peak.data</code> file.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>peak_8k_names <span class="ot">=</span> peak.data <span class="sc">|&gt;</span> <span class="fu">filter</span>(HEIGHTM <span class="sc">&gt;=</span> <span class="dv">8000</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(PEAKID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -283,17 +283,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [16] "Yalung Kang West"     </code></pre>
 </div>
 </div>
-<p>We can see there are 16 different names. If you are into mountaineering, you can see some famous names are missing, like <code>K2</code>, second highest peak in the world. These peaks are missing due to its presence in a different mountain range (Karakoram), instead of Himalayan range.</p>
-<p>Now we extract the expedition details of these 8k peaks.</p>
+<p>We can see there are 16 different names. Although there are some names missing from the actual list of 8000m peaks. I have no idea why some are missing.</p>
+<p>Now we extract the expedition details of these 8000m peaks.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>exped<span class="fl">.8</span>k <span class="ot">=</span> exped.data <span class="sc">|&gt;</span> <span class="fu">filter</span>(PEAKID <span class="sc">%in%</span> peak_8k_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="questions" class="level2">
 <h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<section id="what-is-the-most-successful-route-for-the-expedition-for-8k-peaks" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-the-most-successful-route-for-the-expedition-for-8k-peaks">1. What is the most successful route for the expedition for 8k peaks?</h3>
-<p>There are 4 different routes enlisted for each peaks, assigned by <code>ASCENT1</code>, <code>ASCENT2</code>, <code>ASCENT3</code> and <code>ASCENT4</code>. The succesful climbing in these routes are stored in corresponding logical vector <code>SUCCESS1</code>, <code>SUCCESS2</code>, <code>SUCCESS3</code>, <code>SUCCESS4</code>. We will use these SUCCESS data along with the <code>exped.8k</code> dataset.</p>
+<section id="what-is-the-most-successful-route-for-the-expedition-for-8000m-peaks" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-the-most-successful-route-for-the-expedition-for-8000m-peaks">1. What is the most successful route for the expedition for 8000m peaks?</h3>
+<p>There are 4 different routes enlisted for each peaks, assigned by <code>ASCENT1</code>, <code>ASCENT2</code>, <code>ASCENT3</code> and <code>ASCENT4</code>. The successful climbing using these routes are stored in corresponding logical vector <code>SUCCESS1</code>, <code>SUCCESS2</code>, <code>SUCCESS3</code>, <code>SUCCESS4</code>. We will use these SUCCESS data along with the <code>exped.8k</code> dataset.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>exped<span class="fl">.8</span>k <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(SUCCESS1, SUCCESS2, SUCCESS3, SUCCESS4),</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">names_to =</span> <span class="st">"route_success"</span>,</span>
@@ -339,8 +339,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="what-about-the-8k-peaks" class="level4">
-<h4 class="anchored" data-anchor-id="what-about-the-8k-peaks">What about the 8k peaks</h4>
+<section id="what-about-the-8000m-peaks" class="level4">
+<h4 class="anchored" data-anchor-id="what-about-the-8000m-peaks">What about the 8000m peaks</h4>
+<p>We will just use the <code>exped.8k</code> data instead of <code>exped.data</code> from the previous chunk.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>exped<span class="fl">.8</span>k <span class="sc">|&gt;</span> <span class="fu">filter</span>(SUCCESS1 <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">|</span> SUCCESS2 <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">|</span> SUCCESS3 <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">|</span> SUCCESS4 <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(NATION, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
@@ -348,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"orangered4"</span>) <span class="sc">+</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> n), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Successful expedition by nation on 8k peaks"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Successful expedition by nation on 8000m peaks"</span>,</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Nation"</span>,</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of successful expedition"</span></span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
@@ -366,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="what-about-the-one-we-actually-care-about-everest">What about the one we actually care about (<code>Everest</code>)</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>exped<span class="fl">.8</span>k <span class="sc">|&gt;</span> <span class="fu">filter</span>(SUCCESS1 <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">|</span> SUCCESS2 <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">|</span> SUCCESS3 <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">|</span> SUCCESS4 <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(PEAKID <span class="sc">==</span> <span class="st">"EVER"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(PEAKID <span class="sc">==</span> <span class="st">"EVER"</span>) <span class="sc">|&gt;</span>     <span class="co">#just need to filter the data for Everest</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(NATION, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(NATION, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"lightsalmon3"</span>) <span class="sc">+</span></span>
@@ -459,8 +460,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="among-the-8k-peaks" class="level4">
-<h4 class="anchored" data-anchor-id="among-the-8k-peaks">Among the 8k peaks</h4>
+<section id="among-the-8000m-peaks" class="level4">
+<h4 class="anchored" data-anchor-id="among-the-8000m-peaks">Among the 8000m peaks</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>exped<span class="fl">.8</span>k <span class="sc">|&gt;</span> <span class="fu">left_join</span>(<span class="fu">select</span>(peak.data, PEAKID, PKNAME), <span class="at">by =</span> <span class="st">"PEAKID"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PKNAME) <span class="sc">|&gt;</span></span>
@@ -489,7 +490,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="in-case-of-number-of-fatalities-on-the-peaks" class="level4">
-<h4 class="anchored" data-anchor-id="in-case-of-number-of-fatalities-on-the-peaks">In case of number of fatalities on the peaks</h4>
+<h4 class="anchored" data-anchor-id="in-case-of-number-of-fatalities-on-the-peaks">In case of <code>number of fatalities</code> on the peaks</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>exped.data <span class="sc">|&gt;</span> <span class="fu">left_join</span>(<span class="fu">select</span>(peak.data, PEAKID, PKNAME), <span class="at">by =</span> <span class="st">"PEAKID"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PKNAME) <span class="sc">|&gt;</span></span>
@@ -516,21 +517,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="does-the-use-of-supplemental-oxygen-affect-the-success-rate" class="level3">
-<h3 class="anchored" data-anchor-id="does-the-use-of-supplemental-oxygen-affect-the-success-rate">6. Does the use of supplemental oxygen affect the success rate?</h3>
+<section id="does-the-use-of-supplemental-oxygen-affect-the-success-rate-and-death-rate" class="level3">
+<h3 class="anchored" data-anchor-id="does-the-use-of-supplemental-oxygen-affect-the-success-rate-and-death-rate">6. Does the use of supplemental oxygen affect the success rate? and death rate?</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>exped.data <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">success =</span> SUCCESS1 <span class="sc">|</span> SUCCESS2 <span class="sc">|</span> SUCCESS3 <span class="sc">|</span> SUCCESS4) <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(O2USED) <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">success.rate =</span> (<span class="fu">mean</span>(success, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> O2USED, <span class="at">y =</span> success.rate, <span class="at">fill =</span> O2USED)) <span class="sc">+</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(success.rate, <span class="at">accuracy =</span> <span class="fl">0.1</span>), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>,  <span class="at">size =</span> <span class="dv">4</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Success rate with supplemental oxygen"</span>,</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Oxygen used"</span>,</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Success rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>exped.data <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">success =</span> SUCCESS1 <span class="sc">|</span> SUCCESS2 <span class="sc">|</span> SUCCESS3 <span class="sc">|</span> SUCCESS4,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">death =</span> MDEATHS <span class="sc">+</span> HDEATHS) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(O2USED) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">success.rate =</span> (<span class="fu">mean</span>(success, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">death.rate =</span> <span class="fu">mean</span>(death <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(success.rate, death.rate), <span class="at">names_to =</span> <span class="st">"names"</span>, <span class="at">values_to =</span> <span class="st">"rate"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> O2USED, <span class="at">y =</span> rate, <span class="at">fill =</span> names)) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Impact of supplemental Oxygen use on success and deaths"</span>,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Oxygen Used"</span>, <span class="at">y =</span> <span class="st">"Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -540,29 +540,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="are-commercial-or-standard-routes-more-frequently-involved-in-accidents" class="level3">
-<h3 class="anchored" data-anchor-id="are-commercial-or-standard-routes-more-frequently-involved-in-accidents">7. Are commercial or standard routes more frequently involved in accidents?</h3>
+<section id="which-peaks-have-the-most-attempts-but-lowest-summit-rate-hardest-peaks-to-summit" class="level3">
+<h3 class="anchored" data-anchor-id="which-peaks-have-the-most-attempts-but-lowest-summit-rate-hardest-peaks-to-summit">7. Which peaks have the most attempts but lowest summit rate? (Hardest peaks to summit)</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>exped.data <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">accident =</span> <span class="sc">!</span><span class="fu">is.na</span>(ACCIDENTS)) <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(COMRTE, STDRTE) <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">success =</span> SUCCESS1 <span class="sc">|</span> SUCCESS2 <span class="sc">|</span> SUCCESS3 <span class="sc">|</span> SUCCESS4) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PEAKID) <span class="sc">|&gt;</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">accident_rate =</span> scales<span class="sc">::</span><span class="fu">percent</span>(<span class="fu">mean</span>(accident, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">n</span>()</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'COMRTE'. You can override using the
-`.groups` argument.</code></pre>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">attempts =</span> <span class="fu">n</span>(),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">successes =</span> <span class="fu">sum</span>(success, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">summit.rate =</span> successes <span class="sc">/</span> attempts) <span class="sc">|&gt;</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(<span class="fu">select</span>(peak.data, PEAKID, PKNAME), <span class="at">by =</span> <span class="st">"PEAKID"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(PKNAME), attempts <span class="sc">&gt;=</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(attempts)) <span class="sc">|&gt;</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(summit.rate) <span class="sc">|&gt;</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">#slice_head(n = 10) |&gt;</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(PKNAME, <span class="fu">desc</span>(summit.rate)), <span class="at">y =</span> summit.rate)) <span class="sc">+</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"darkred"</span>) <span class="sc">+</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(summit.rate, <span class="at">accuracy =</span> <span class="fl">0.1</span>)), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Top 10 Hardest Peaks to Summit"</span>,</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Peaks with most attempts but lowest summit success rate"</span>,</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Peak Name"</span>,</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Summit Success Rate"</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_title_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 4
-# Groups:   COMRTE [2]
-  COMRTE STDRTE accident_rate total
-  &lt;lgl&gt;  &lt;lgl&gt;  &lt;chr&gt;         &lt;int&gt;
-1 FALSE  FALSE  2%              268
-2 FALSE  TRUE   1%              177
-3 TRUE   FALSE  0%              146
-4 TRUE   TRUE   2%              291</code></pre>
 </div>
 </div>
 
