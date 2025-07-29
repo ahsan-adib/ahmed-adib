@@ -1,0 +1,4 @@
+"0","data = read_excel(""D:/Drive/OneDrive - University of Oklahoma/Thymic data anylsis/IHC Data/IHC_AnalysisIHC Data master file.xlsx"")
+"
+"2","G1;H1;Errorh: `path` does not exist: ‘D:/Drive/OneDrive - University of Oklahoma/Thymic data anylsis/IHC Data/IHC_AnalysisIHC Data master file.xlsx’
+g"

@@ -10,5 +10,11 @@
   },
   "projects.qmd": {
     "projects.html": "44a31a19"
+  },
+  "projects/CopyOfproject_title.qmd": {
+    "CopyOfproject_title.html": "8185097d"
+  },
+  "projects/CopyOfproject_title.knit.md": {
+    "CopyOfproject_title.knit.html": "b9d482e8"
   }
 }

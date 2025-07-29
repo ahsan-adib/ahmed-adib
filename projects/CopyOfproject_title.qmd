@@ -1,0 +1,106 @@
+---
+title: "IHC Data"
+author: Ahmed A. Adib
+date: 2025-07-22
+draft: false
+editor-options:
+  chunk_output_type: inline
+---
+
+## Packages used
+
+```{r}
+#| label: load-packages
+#| output: false
+library(tidyverse)
+library(readxl)
+```
+
+## Import master data file
+
+```{r}
+data = read_excel("D:/Drive/OneDrive - University of Oklahoma/Thymic data anylsis/IHC Data/IHC_Analysis/IHC Data master file.xlsx")
+```
+
+Check the data now
+
+```{r}
+glimpse(data)
+```
+
+```{r}
+#data = data |> mutate(Section = as.numeric(Section))
+#data = data |> mutate(Section = round(Section, 1))
+```
+
+## Clean up the data
+
+### Change the class of the section column
+
+```{r}
+data = data |>
+  mutate(Section = ifelse(
+    grepl("^\\d+\\.?\\d*$", Section),               # Checks if purely numeric (integer or decimal)
+    as.character(round(as.numeric(Section), 1)),    # Round and convert back to character
+    Section                                         # Keep original for non-numeric entries
+  ))
+```
+
+
+### Change the column names
+
+```{r}
+colnames(data)[3] = "age_cat"
+colnames(data)[4] = "section"
+colnames(data)[5] = "all_positive"
+colnames(data)[6] = "follicles"
+colnames(data)[7] = "cd21_bcl6_positive"
+colnames(data)[8] = "cd19_bcl6_positive"
+colnames(data)[9] = "only_cd21_positive"
+colnames(data)[10] = "only_cd19_positive"
+colnames(data)[11] = "only_bcl6_positive"
+colnames(data)[12] = "total_cd21_positive"
+colnames(data)[13] = "total_cd19_positive"
+colnames(data)[14]
+```
+
+
+
+
+```{r}
+data |> filter(!is.na(`CD19 Area (μm²)`)) |>
+  group_by(age_cat) |>
+  mutate(age_cat = factor(age_cat, levels = c("Infant", "Toddler", "Pre-pubertal", "Peri-pubertal"))) |>
+  ggplot(aes(x = age_cat, y = `CD19 Area (μm²)`, fill = age_cat)) +
+  geom_boxplot(width = 0.5) +
+  geom_jitter(position = position_jitter(width = 0.2), alpha = 0.7) +
+  scale_color_brewer(palette = "Set2") +
+  theme_minimal() +
+  labs(
+    title = "CD19 positive area in different age groups",
+    x = "Age categories",
+    y = "CD19 area (μm²)"
+  )
+```
+
+
+
+```{r}
+data |> filter(!is.na(`CD21 Area (μm²)`)) |>
+  group_by(age_cat) |>
+  mutate(age_cat = factor(age_cat, levels = c("Infant", "Toddler", "Pre-pubertal", "Peri-pubertal"))) |>
+  ggplot(aes(x = age_cat, y = `CD21 Area (μm²)`, fill = age_cat)) +
+  geom_boxplot(width = 0.5) +
+  geom_jitter(position = position_jitter(width = 0.2), alpha = 0.7) +
+  scale_color_brewer(palette = "Set2") +
+  theme_minimal() +
+  labs(
+    title = "CD21 positive area in different age groups",
+    x = "Age categories",
+    y = "CD21 area (μm²)"
+  )
+```
+
+
+
+
