@@ -1,0 +1,14 @@
+"0","#| warning: false
+data = data |>
+  mutate(Section = ifelse(
+    grepl(""^\\d+\\.?\\d*$"", Section),               # Checks if purely numeric (integer or decimal)
+,    # Round and convert back to character
+Section                                         # Keep original for non-numeric entries
+))
+"
+"2","G1;[1m[33mError[39m in `mutate()`:[22m
+[38;5;250m[36mℹ[38;5;250m In argument: `Section = ifelse(grepl(""^\\d+\\.?\\d*$"", Section), , Section)`.[39m
+[1mCaused by error in `ifelse()`:[22m
+[33m![39m argument ""yes"" is missing, with no default
+[90mRun `]8;;x-r-run:rlang::last_trace()rlang::last_trace()]8;;` to see where the error occurred.[39m
+g"
