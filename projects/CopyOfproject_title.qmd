@@ -19,7 +19,7 @@ library(readxl)
 ## Import master data file
 
 ```{r}
-data = read_excel("D:/Drive/OneDrive - University of Oklahoma/Thymic data anylsis/IHC Data/IHC_Analysis/IHC Data master file.xlsx")
+data = read_excel("C:/Users/ahsan/OneDrive/Documents/GitHub/ahmed-adib/IHC Data master file.xlsx")
 ```
 
 Check the data now
@@ -38,6 +38,7 @@ glimpse(data)
 ### Change the class of the section column
 
 ```{r}
+#| warning: false
 data = data |>
   mutate(Section = ifelse(
     grepl("^\\d+\\.?\\d*$", Section),               # Checks if purely numeric (integer or decimal)
