@@ -3,7 +3,7 @@
     "path": "~/GitHub/ahmed-adib/projects/CopyOfproject_title.qmd",
     "project_path": "projects/CopyOfproject_title.qmd",
     "type": "quarto_markdown",
-    "hash": "385615878",
+    "hash": "3751465390",
     "contents": "",
     "dirty": false,
     "created": 1753798397740.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "101,3",
-        "scrollLine": "80"
+        "cursorPosition": "21,39",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1753806007,
+    "lastKnownWriteTime": 1753806323,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1753806007096,
+    "last_content_update": 1753806323525,
     "read_only": false,
     "read_only_alternatives": []
 }

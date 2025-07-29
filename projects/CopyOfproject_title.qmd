@@ -19,7 +19,7 @@ library(readxl)
 ## Import master data file
 
 ```{r}
-data = read_excel("D:/Quarto host files/IHC_master.xlsx")
+data = read_excel("D:/quarto_host_files/IHC_master.xlsx")
 ```
 
 Check the data now
